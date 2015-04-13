@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="scripts/angular.js"></script>
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp">
+
+</body>
+<div ng-controller="myCtrl">
+    <h1>Directive List with Isolated scope</h1>
+    <my-customer  ng-model="name" info="name"></my-customer>
+    <br>
+    <my-customer  ng-model="name1" info="name1"></my-customer>
+</div>
+<script>
+    var app =angular.module('myApp',[]);
+
+    app.controller('myCtrl',['$scope','$window',function(scope,window){
+        scope.name='test';
+        scope.name1='test1';
+
+    }]);
+
+    app.directive('myCustomer', ['$rootScope',function($rootScope) {
+        return {
+            scope:{
+                text: '=info'
+            },
+            template: '<span>Item - {{text}} </span>'
+        }
+    }]);
+</script>
+</html>
