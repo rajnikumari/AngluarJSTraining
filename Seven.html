@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="scripts/angular.js"></script>
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp">
+<h1>Filtered List</h1>
+<div ng-controller="myCtrl">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">ADD</button>
+    <ol>
+        <li ng-repeat="n in names | myFilter">{{n|capFilter}}</li>
+    </ol>
+</div>
+
+<h1>UnFiltered List</h1>
+<div ng-controller="myCtrl">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">ADD</button>
+    <ol>
+        <li ng-repeat="n in names">{{n}}</li>
+    </ol>
+
+
+
+</div>
+
+<div ng-controller="myCtrl">
+    <h1>Directive List </h1>
+    <my-list></my-list>
+</div>
+
+
+<div ng-controller="myCtrl">
+    <h1>Directive List with TemplateUrl</h1>
+    <my-list1></my-list1>
+</div>
+
+<div ng-controller="myCtrl">
+    <h1>Directive List with Isolated scope</h1>
+    <ol>
+        <li ng-repeat="n in names">
+            <my-element info="n"></my-element>
+        </li>
+    </ol>
+
+</div>
+
+</body>
+
+<script>
+    var app =angular.module('myApp',[]);
+    app.factory("myService",[function(){
+        return({
+            items:[
+                'Name 1',
+                'Name 2',
+                'SUNDAY'
+            ],
+            addName: function(name){
+                this.items.push(name);
+            }
+        })
+    }]);
+
+    app.controller('myCtrl',['$scope','$filter','myService','$window',function($scope,$filter,myService,$window){
+
+        $scope.addName=function(){
+            var capName=$filter('capFilter')($scope.name);
+            $window.alert(capName);
+            myService.addName(capName);
+            $scope.name='';
+        };
+
+        $scope.names=myService.items;
+    }]);
+
+    app.filter('myFilter',[function(){
+        var filter = function(items){
+            var filtered=[];
+            for(var i=0;i<items.length;i++){
+                var item = items[i];
+                if(item.search(/DAY/)!=-1){
+                    filtered.push(item);
+                }
+            }
+            return filtered;
+        }
+        return filter;
+    }]);
+
+    app.filter('capFilter',function(){
+        return function(text){
+            return text.toString().toUpperCase();
+        }
+    });
+
+
+    app.directive('myList',function(){
+            return{
+              template: '<ol>'+
+                             '<li ng-repeat="n in names" ng-bind="n">'
+                             +'</li>'+
+                         '</ol>'
+            };
+     });
+
+    app.directive('myList1',function(){
+        return{
+            templateUrl: "myTemplate.html"
+        };
+    });
+    app.directive('myElement',function(){
+        return {
+            scope:{
+                text: '=info'
+            },
+            template: '<span>Item - {{text}} </span>'
+        }
+    });
+</script>
+</html>
