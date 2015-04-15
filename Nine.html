@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="scripts/angular.js"></script>
+
+    <script src="scripts/angular-ui-router.js"></script>
+
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp">
+<h1>Navigation Using UI router</h1>
+
+<div >
+     <a ui-sref="state1">State1</a> |
+     <a ui-sref="state2">State2</a> |
+
+    <br/>
+    <br/>
+    <div ui-view></div>
+
+</div>
+
+</body>
+
+<script>
+    var app =angular.module('myApp',['ui.router']);
+
+
+    app.controller('myCtrl',['$scope','$window',function($scope,$window){
+
+      $window.alert("hii...");
+    }]);
+
+
+    app.config(function($stateProvider,$urlRouterProvider){
+        $urlRouterProvider.otherwise("/state1/list");
+
+        $stateProvider
+                .state('state1',{
+                    url: "/state1",
+                    templateUrl: "partials/state1.html"
+                })
+                .state('state2',{
+                    url: "/state2",
+                    templateUrl: "partials/state2.html"
+                })
+                .state('state1.list',{
+                    url: "/list",
+                    templateUrl: "partials/state1.list.html",
+                    controller:function($scope){
+                        $scope.items=["Item 1","Item 2","Item 3"]
+                    }
+                })
+                .state('state1.table',{
+                    url: "/table",
+                    templateUrl: "partials/state1.table.html",
+                    controller:function($scope){
+                        $scope.items=["Item 4","Item 5","Item 6"]
+                    }
+                })
+
+                .state('state1.table.list',{
+                    //URL can be left bank, it is only used for showing url in the browser
+                    url: "",
+                    templateUrl: "partials/state1.table.list.html",
+                    controller:function($scope){
+                        $scope.items=["Item 1","Item 2","Item 3"]
+                    }
+                })
+
+
+    });
+</script>
+</html>
