@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="scripts/angular.js"></script>
+
+    <script src="scripts/angular-ui-router.js"></script>
+
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp">
+<h1>Navigation Using UI router</h1>
+
+<div >
+    <a ui-sref="state1">State1</a> |
+    <a ui-sref="state2">State2</a> |
+
+    <br/>
+    <br/>
+    <div ui-view></div>
+
+</div>
+
+<br/>
+
+<h1> Filtered List containing 'day'</h1>
+<div ng-controller="nameCtrl">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">ADD</button>
+    <ol>
+        <li ng-repeat="n in names | myFilter">{{n|capFilter}}</li>
+    </ol>
+</div>
+
+<br/>
+
+<h1> UnFiltered List </h1>
+<div ng-controller="nameCtrl">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">ADD</button>
+    <ol>
+        <li ng-repeat="n in names ">{{n|capFilter}}</li>
+    </ol>
+</div>
+</body>
+
+<script src="scripts/common/common.module.js"></script>
+<script src="scripts/common/directives/listItem.js"></script>
+<script src="scripts/names/names.module.js"></script>
+<script src="scripts/names/controllers/names.controller.js"></script>
+<script src="scripts/names/filters/names.filter.js"></script>
+<script src="scripts/names/services/names.service.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/partials/partials.module.js"></script>
+</html>
