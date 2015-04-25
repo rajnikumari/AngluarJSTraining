@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="scripts/angular.js"></script>
+
+    <script src="scripts/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+    <title>Bootstrap Page</title>
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp" ng-controller="invoiceCtrl">
+<h1>INVOICE MANAGEMENT SYSTEM</h1>
+
+<div class="container" >
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                <div id="navbar" class="collapse navbar-collapse" >
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a ui-sref="#">Home</a></li>
+                        <li><a ui-sref="employee" >Employee</a></li>
+                        <li><a ui-sref="invoices">Invoices</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+
+            </div>
+        </nav>
+        <div ui-view ></div>
+    </div>
+
+
+</body>
+
+<script src="scripts/common/common.module.js"></script>
+<script src="scripts/common/directives/listItem.js"></script>
+<script src="scripts/invoices/invoices.module.js"></script>
+<script src="scripts/invoices/controllers/invoices.controller.js"></script>
+<script src="scripts/invoices/filters/invoices.filter.js"></script>
+<script src="scripts/invoices/services/invoices.service.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/partials/partials.module.js"></script>
+</html>

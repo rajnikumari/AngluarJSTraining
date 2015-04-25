@@ -1,0 +1,86 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Invoice Management:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Two Parts:
+1)Customers
+	Name
+	Address
+2)Invoices
+	customer
+	List of Items where each item will have title and cost.
+	Total costs
+	
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Main Page
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+List of invoice
+add customer
+add invice
+Link to list of customers
+URL- /invoices
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+invoice details
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+On clicking invoice -go to details page
+URL/invoice/id
+details of invoice
+wether the invoice is paid
+Name on the customer should be clicklable and link to customer details
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Customers Details
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+URL\customer\id
+Customer Details
+Link to invoices for this customer
+Total outstanding for this customer
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Invoice for particular customer
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+URL-/customer/id/invoices
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+{
+	id:1,
+	Name:rajni,
+	Address: my_address,
+	List_of_invoices:[{
+		id:invoice_id,
+		list of items: [item1,item2],
+		amounnt paid:9339
+	},
+	{
+		id:invoice_id,
+		list_of_items: [item1,item2],
+		amounnt paid:9339
+	}
+	]
+}
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Code Structuring
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+TODO:USE Mongo as an Backend.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
