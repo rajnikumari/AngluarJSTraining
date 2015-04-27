@@ -1,1 +1,62 @@
-<h1>Invoices List {{emp_id}}</h1>
+<div class="container">
+<h3>Invoices List for Customer: {{invoice.Name}}</h3>
+    <h2>Customer ID :{{invoice.Id}}</h2>
+<table style="width:100%" class="table-bordered">
+    <tr>
+        <th>Invoice ID</th>
+        <th>AmountPaid</th>
+        <th>TotalCost</th>
+        <th>Items</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="inv in invoice.Invoices">
+        <td>{{inv.id}}</td>
+        <td>{{inv.AmountPaid}}</td>
+        <td>{{inv.TotalCost}}</td>
+        <td>{{inv.Items}}</td>
+
+    </tr>
+</table>
+    <br/>
+    <button class="btn btn-default" ng-click="showAddInvoice=true">
+        <span class="glyphicon glyphicon-user"></span>  Add Invoice
+    </button>
+    <hr>
+
+    <div ng-show="showAddInvoice">
+        <h3>Create new Invoice for Customer: {{invoice.Name}}</h3>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">AmountPaid:</label>
+                <div class="col-sm-10">
+                    <input type="text" ng-model="AmountPaid" placeholder="Amount Paid">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">TotalCost:</label>
+                <div class="col-sm-10">
+                    <input type="text" ng-model="TotalCost"  placeholder="Total Cost">
+                </div>
+            </div>
+            <div class="form-group" ng-model="selectedItem">
+            <label class="col-sm-2 control-label">Items:</label>
+                <div class="action-checkbox">
+                    <label ng-repeat="it in Items">
+                         <div class="col-sm-10">
+                             <input type="checkbox" checklist-value="it"  > {{it}}
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+        <button class="btn btn-default" ng-click="addInvoiceToCustomer(invoice.Id,AmountPaid,TotalCost,selectedItem)">
+            <span class="glyphicon glyphicon-save"></span>  Save
+        </button>
+    </div>
+
+
+
+    <div ui-view></div>
+</div>

@@ -10,8 +10,10 @@ angular.module('partials',['ui.router']).config(function($stateProvider,$urlRout
             url: "/invoices:emp",
             templateUrl: "scripts/partials/invoices.html",
             controller:function($scope,$stateParams){
-              console.log($stateParams.emp);
-                $scope.emp_id=$stateParams.emp;
+             //console.log($stateParams.emp);
+             //$scope.emp_id=$stateParams.emp;
+             $scope.showInvoiceForCustomer($stateParams.emp);
+            //    console.log($scope.invoice);
             }
         })
         .state('#',{

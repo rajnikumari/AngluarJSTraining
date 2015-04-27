@@ -18,7 +18,7 @@ angular.module('invoices').factory("invoiceService",[function(){
                 }]
             },  {
                 Id:2,
-                Name:'Rajni Kumari',
+                Name:'R K',
                 Address: 'PUNE',
                 Invoices:[{
                     id:108,
@@ -33,8 +33,34 @@ angular.module('invoices').factory("invoiceService",[function(){
                 }]
             }
         ],
-        addName: function(employee){
+        addCustomer: function(name,addr){
+            var employee={
+                Id:this.employees.length+1,
+                Name:name,
+                Address: addr
+            };
             this.employees.push(employee);
-        }
+        },
+        showInvoiceForCustomer: function(customerID){
+            for (var i = 0; i < this.employees.length; i++) {
+               if(customerID==this.employees[i].Id){
+                  return  this.employees[i];
+
+               }
+            }
+        },
+        Items: [
+        'item1',
+        'item2',
+        'item16',
+        'item19'
+    ],
+    selectedItm:[],
+    selectedItem:function(itm){
+        this.selectedItm.push(itm);
+    }
+
+
     })
+
 }]);
