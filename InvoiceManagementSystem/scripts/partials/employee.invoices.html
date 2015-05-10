@@ -1,0 +1,94 @@
+<div class="container">
+<h3>Invoices List for Customer: {{invoice.Name}}</h3>
+    <h2>Customer ID :{{invoice.Id}}</h2>
+<table style="width:100%" class="table-bordered">
+    <tr>
+        <th>Invoice ID</th>
+        <th>AmountPaid</th>
+        <th>TotalCost</th>
+        <th>Items</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="inv in invoice.Invoices">
+        <td>{{inv.id}}</td>
+        <td>{{inv.AmountPaid}}</td>
+        <td>{{inv.TotalCost}}</td>
+        <td>{{inv.Items}}</td>
+
+    </tr>
+</table>
+    <br/>
+    <button class="btn btn-default" ng-click="showAddInvoice=true">
+        <span class="glyphicon glyphicon-user"></span>  Add Invoice
+    </button>
+    <hr>
+
+    <div ng-show="showAddInvoice" ng-model="selectedItem">
+        <h3>Create new Invoice for Customer: {{invoice.Name}}</h3>
+        <form class="form-horizontal">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Amount Paid:</label>
+            <div class="col-sm-10">
+                <input type="text" ng-model="AmountPaid" placeholder="Amount Paid">
+            </div>
+        </div>
+        <!--div class="form-group">
+           <label class="col-sm-2 control-label">Total Cost:</label>
+           <div class="col-sm-10">
+                <input type="text" ng-model="TotalCost"  placeholder="Total Cost">
+           </div>
+        </div-->
+
+        <div >
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Item Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="ItemName" placeholder="Item Name"
+                               ng-model="ItemName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Item Cost</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="ItemCost" placeholder="Item Cost"
+                               ng-model="ItemCost" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Save Item</label>
+                    <div class="col-sm-10">
+                        <button class="btn btn-default" ng-click="addItem(ItemName,ItemCost)">
+                            <span class="glyphicon glyphicon-user"></span>  ADD ITEM
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <table style="width:100%" class="table-bordered">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Cost</th>
+                </tr>
+                <tr ng-repeat="itm in selectedItemList">
+                    <td>{{itm.ItemName}}</td>
+                    <td>{{itm.ItemCost}}</td>
+
+                </tr>
+                <tr ng-model="TotalCost">
+                    <td>Total Cost</td>
+                    <td>{{TotalCost}}</td>
+
+                </tr>
+            </table>
+        </form>
+        <hr>
+        <button class="btn btn-default" ng-click="addInvoiceToCustomer(invoice.Id,AmountPaid)">
+            <span class="glyphicon glyphicon-save"></span>  Save INVOICE
+        </button>
+    </div>
+
+
+
+    <div ui-view></div>
+</div>

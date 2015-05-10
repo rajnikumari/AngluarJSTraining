@@ -9,12 +9,24 @@ angular.module('invoices').factory("invoiceService",[function(){
                     id:101,
                     AmountPaid:1000,
                     TotalCost:2000,
-                    Items:['item1','item2']
+                    Items:[{
+                        ItemName: 'item1',
+                        ItemCost: '1000'
+                    },{
+                        ItemName: 'item2',
+                        ItemCost: '1000'
+                    }]
                 },{
                     id:102,
                     AmountPaid:5000,
                     TotalCost:12000,
-                    Items:['item16','item19']
+                    Items:[{
+                        ItemName: 'item1',
+                        ItemCost: '6000'
+                    },{
+                        ItemName: 'item2',
+                        ItemCost: '6000'
+                    }]
                 }]
             },  {
                 Id:2,
@@ -24,12 +36,24 @@ angular.module('invoices').factory("invoiceService",[function(){
                     id:108,
                     AmountPaid:1000,
                     TotalCost:2000,
-                    Items:['item1','item2']
+                    Items:[{
+                        ItemName: 'item1',
+                        ItemCost: '1000'
+                    },{
+                        ItemName: 'item2',
+                        ItemCost: '1000'
+                    }]
                 },{
                     id:109,
                     AmountPaid:5000,
                     TotalCost:12000,
-                    Items:['item16','item19']
+                    Items:[{
+                        ItemName: 'item1',
+                        ItemCost: '6000'
+                    },{
+                        ItemName: 'item2',
+                        ItemCost: '6000'
+                    }]
                 }]
             }
         ],
@@ -37,7 +61,8 @@ angular.module('invoices').factory("invoiceService",[function(){
             var employee={
                 Id:this.employees.length+1,
                 Name:name,
-                Address: addr
+                Address: addr,
+                Invoices:[]
             };
             this.employees.push(employee);
         },
@@ -49,18 +74,22 @@ angular.module('invoices').factory("invoiceService",[function(){
                }
             }
         },
-        Items: [
-        'item1',
-        'item2',
-        'item16',
-        'item19'
-    ],
-    selectedItm:[],
-    selectedItem:function(itm){
-        this.selectedItm.push(itm);
-    }
+        addInvoiceToCustomer: function(CustId,AmountPaid,TotalCost,selectedItem) {
+            var cust = this.showInvoiceForCustomer(CustId);
+            var invoiceId = 0;
+            if (cust.hasOwnProperty('Invoices')) {
+                invoiceId = cust.Invoices.length;
+            }
+            var invoice = {
+                id: cust.Name + (CustId + invoiceId + 1),
+                AmountPaid: AmountPaid,
+                TotalCost: TotalCost,
+                Items: selectedItem
+            };
 
+            cust.Invoices.push(invoice);
 
+        }
     })
 
 }]);

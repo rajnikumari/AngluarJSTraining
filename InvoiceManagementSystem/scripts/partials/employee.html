@@ -7,11 +7,11 @@
     <th>Employee Address</th>
     <th>Invoices</th>
 </tr>
-<tr ng-repeat="emp in employees" ng-model="invoice">
+<tr ng-repeat="emp in employees"  ng-model="invoice">
     <td>{{emp.Id}}</td>
     <td>{{emp.Name}}</td>
     <td>{{emp.Address}}</td>
-    <td><a ui-sref="invoices({emp:{{emp.Id}}})"> List Of Invoice</a> </td>
+    <td><a ui-sref="employee.invoices({emp:{{emp.Id}}})"> List Of Invoice</a> </td>
 
 </tr>
 </table>
